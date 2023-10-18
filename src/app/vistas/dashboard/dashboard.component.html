@@ -1,1 +1,32 @@
-<p>dashboard works!</p>
+<app-header></app-header>
+
+<div class="container">
+  <h3>Lista de usuario</h3><br>
+
+  <button type="button" class="btn btn-primary" (click)= "nuevoUsuario()">Nuevo usuario</button>
+
+  <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">NOMBRE</th>
+      <th scope="col">APELLIDO</th>
+      <th scope="col">TIPO_DOCUMENTO</th>
+      <th scope="col">DOCUMENTO</th>
+      <th scope="col">ESTADO</th>
+      <th scope="col">ROL</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let user of users" (click)="editarUsuario(user.first_name)">
+      <th scope="row">{{user.first_name}}</th>
+      <td>{{user.last_name}}</td>
+      <td>{{user.type_document}}</td>
+      <td>{{user.document}}</td>
+      <td>{{user.is_active}}</td>
+      <td>{{user.role}}</td>
+    </tr>
+  </tbody>
+  </table>
+</div>
+<app-footer></app-footer>

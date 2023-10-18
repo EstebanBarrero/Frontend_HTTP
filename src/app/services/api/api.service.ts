@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {LoginI} from '../../models/login.interface';
 import {ResponseI} from '../../models/response.interface';
+import {ListaUsuariosI} from '../../models/listaUsuarios.interface';
 import {HttpClient, HttpHeaders} from '@angular/common/http'
 import {Observable}  from 'rxjs'
 
@@ -9,12 +10,18 @@ import {Observable}  from 'rxjs'
 })
 export class ApiService {
   //Url en donde tengamos almacenado la api de pruebas
-  url: string = "http://solodata.es/"
+  url: string = "http://127.0.0.1:8000/"
 
   constructor(private http:HttpClient) { }
 
   loginByEmail(form: LoginI): Observable<ResponseI>{
     let direction = this.url
-    return
+    return this.http.post<ResponseI>(direction,form);
   }
+
+  getAllUsers(page:number): Observable<ListaUsuariosI[]>{
+    let direction = this.url + "users/?page=" + page
+    return this.http.get <ListaUsuariosI[]>(direction);
+  }
+
 }
