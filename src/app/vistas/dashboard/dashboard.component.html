@@ -2,13 +2,40 @@
 
 <div class="container">
   <h3>Lista de usuario</h3><br>
+  <div class="d-flex justify-content-between">
 
-  <button type="button" class="btn btn-primary" (click)= "nuevoUsuario()">Nuevo usuario</button>
+    <button type="button" class="btn btn-primary" (click)="nuevoUsuario()">Listado Roles</button>
+
+    <nav aria-label="...">
+      <ul class="pagination">
+        <nav aria-label="...">
+          <ul class="pagination">
+            <li class="page-item disabled">
+              <span class="page-link">Previous</span>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#" (click)="cambiarNumero(1)">1</a>
+            </li>
+            <li class="page-item active">
+              <span class="page-link"href="#" (click)="cambiarNumero(2)">
+                2
+                <span class="sr-only"></span>
+              </span>
+            </li>
+            <li class="page-item"><a class="page-link" href="#"(click)="cambiarNumero(3)">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#">Next</a>
+            </li>
+          </ul>
+        </nav>
+      </ul>
+    </nav>
+  </div>
 
   <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col">ID</th>
+
       <th scope="col">NOMBRE</th>
       <th scope="col">APELLIDO</th>
       <th scope="col">TIPO_DOCUMENTO</th>
