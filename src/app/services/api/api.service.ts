@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {LoginI} from '../../models/login.interface';
 import {ResponseI} from '../../models/response.interface';
 import {ListaUsuariosI} from '../../models/listaUsuarios.interface';
+import {UsuarioI} from '../../models/usuario.interface'
 import {HttpClient, HttpHeaders} from '@angular/common/http'
 import {Observable}  from 'rxjs'
 
@@ -20,8 +21,13 @@ export class ApiService {
   }
 
   getAllUsers(page:number): Observable<ListaUsuariosI[]>{
-    let direction = this.url + "users/?page=" + page
+    let direction = this.url + "api/users/?page=" + page
     return this.http.get <ListaUsuariosI[]>(direction);
   }
+
+  /*getSigleUser(document): Observable<UsuarioI>{
+    let direction = this.url + ""
+    return
+  }*/
 
 }

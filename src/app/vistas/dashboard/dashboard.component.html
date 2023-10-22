@@ -57,7 +57,7 @@
     </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let user of users" (click)="editarUsuario(user.first_name)">
+  <tr *ngFor="let user of users" (click)="editarUsuario(user.document)">
       <th scope="row">{{user.first_name}}</th>
       <td>{{user.last_name}}</td>
       <td>{{user.type_document}}</td>

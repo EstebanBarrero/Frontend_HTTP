@@ -12,7 +12,7 @@ import {ListaUsuariosI} from '../../models/listaUsuarios.interface';
 export class DashboardComponent implements OnInit{
 
   users: ListaUsuariosI[] = [];
-  pageNumber: number = 1; // Valor inicial
+  pageNumber: number = 2; // Valor inicial
 
   constructor(private api:ApiService, private router:Router ){
 
@@ -38,8 +38,8 @@ export class DashboardComponent implements OnInit{
 
 
 
-  editarUsuario(first_name: any){
-    this.router.navigate(['edit', first_name]);
+  editarUsuario(document: any){
+    this.router.navigate(['edit', document]);
   }
 
   nuevoUsuario(){
