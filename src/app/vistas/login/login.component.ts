@@ -15,7 +15,6 @@ export class LoginComponent implements OnInit{
   loginForm = new FormGroup({
     usuario: new FormControl('',Validators.required),
     password: new FormControl('', Validators.required)
-
   })
 
   constructor(private api:ApiService, private router: Router){}
@@ -33,7 +32,7 @@ export class LoginComponent implements OnInit{
     }
   }
 
-
+  /*TODO: Activar: Login Thomas */
   onLogin(form: any) {
     this.router.navigate(['dashboard']);
     /*this.api.loginByEmail(form).subscribe(data =>{

@@ -20,7 +20,7 @@ export class ApiService {
   }
 
   getAllUsers(page:number): Observable<ListaUsuariosI[]>{
-    let direction = this.url + "users/?page=" + page
+    let direction = this.url + "api/users/?page=" + page
     return this.http.get <ListaUsuariosI[]>(direction);
   }
 
