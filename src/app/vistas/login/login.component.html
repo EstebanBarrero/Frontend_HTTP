@@ -10,12 +10,12 @@
 
     <!-- Login Form -->
     <form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)">
-      <input type="text" id="login" class="fadeIn second" placeholder="login" formControlName = "usuario">
+      <input type="text" id="login" class="fadeIn second" placeholder="id" formControlName = "usuario" pattern="[0-9]*">
       <input type="password" id="password" class="fadeIn third" placeholder="password" formControlName = "password">
       <input type="submit" class="fadeIn fourth" value="Log In">
     </form>
 
-    <!-- Remind Passowrd -->
+    <!-- Remind Password -->
     <div class="alert alert-danger" *ngIf="errorStatus">
       <p>{{errorMsj}}</p>
     </div>
