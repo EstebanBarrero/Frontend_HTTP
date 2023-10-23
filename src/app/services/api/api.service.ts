@@ -26,9 +26,10 @@ export class ApiService {
     return this.http.get <ListaUsuariosI[]>(direction);
   }
 
-  /*getSigleUser(document): Observable<UsuarioI>{
-    let direction = this.url + ""
-    return
-  }*/
+  getSigleUser(id : any): Observable<UsuarioI>{
+    let direction = this.url + "api/users/" + id + "/"
+    console.log(direction);
+    return this.http.get<UsuarioI>(direction);
+  }
 
 }

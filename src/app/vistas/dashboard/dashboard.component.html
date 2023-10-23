@@ -62,7 +62,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let user of filteredUsers" (click)="editarUsuario(user.document)">
+      <tr *ngFor="let user of filteredUsers" (click)="editarUsuario(user.id)">
         <th scope="row">{{ user.first_name }}</th>
         <td>{{ user.last_name }}</td>
         <td>{{ user.type_document }}</td>
