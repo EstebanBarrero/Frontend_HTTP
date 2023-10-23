@@ -64,7 +64,7 @@
             <tr *ngFor="let rol of filteredRoles" (click)="editarRol(rol.id)">
                 <th scope="row">{{ rol.rol_name }}</th> <!-- Corregido: rol_name en lugar de user.first_name -->
                 <td>{{ rol.description }}</td>
-                <td>{{ rol.rol_status }}</td> <!-- Corregido: rol_status en lugar de status -->
+                <td>{{ rol.rol_status ? 'Activo' : 'Inactivo' }}</td>
             </tr>
         </tbody>
     </table>
