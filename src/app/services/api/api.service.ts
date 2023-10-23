@@ -3,6 +3,8 @@ import {LoginI} from '../../models/login.interface';
 import {ResponseI} from '../../models/response.interface';
 import {ListaUsuariosI} from '../../models/listaUsuarios.interface';
 import {UsuarioI} from '../../models/usuario.interface'
+import {ListaRolesI} from '../../models/listaRoles.interface'
+import { RolI } from 'src/app/models/rol.interface';
 import {HttpClient, HttpHeaders} from '@angular/common/http'
 import {Observable}  from 'rxjs'
 
@@ -30,6 +32,11 @@ export class ApiService {
     let direction = this.url + "api/users/" + id + "/"
     console.log(direction);
     return this.http.get<UsuarioI>(direction);
+  }
+
+  getAllRoles(page:number): Observable<ListaRolesI[]>{ // No hay interfaz para los roles
+    let direction = this.url + "api/roles/?page=" + page
+    return this.http.get<ListaRolesI[]>(direction);
   }
 
 }

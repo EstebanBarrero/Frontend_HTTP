@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit {
   searchTerm: string = '';
   filteredUsers: ListaUsuariosI[] = [];
   resultsPerPage: number = 10;
-
+  pageTitle: string = 'CONTROL PANEL USERS';
 
   constructor(private api: ApiService, private router: Router) {
     this.resultsPerPage = 10; 
@@ -25,6 +25,11 @@ export class DashboardComponent implements OnInit {
   cambiarResultadosPorPagina() {
     this.pageNumber = 1; // Reiniciar la página a 1 cuando cambies el número de resultados por página
     this.cargarUsuarios();
+  }
+
+  //cambiar a dashboard de roles
+  rolesDashboard() {
+    this.router.navigate(['dashboard-roles']);
   }
   
   cambiarNumero(numero: number, event: Event) {

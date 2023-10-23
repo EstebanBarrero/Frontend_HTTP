@@ -8,13 +8,15 @@ import { FooterComponent } from './plantillas/footer/footer.component';
 
 import {ReactiveFormsModule, FormsModule} from  '@angular/forms'
 import {HttpClientModule} from '@angular/common/http';
+import { DashboardRolesComponent } from './vistas/dashboard-roles/dashboard-roles/dashboard-roles.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    routingComponents
+    routingComponents,
+    DashboardRolesComponent
   ],
   imports: [
     BrowserModule,
