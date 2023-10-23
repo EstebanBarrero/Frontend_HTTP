@@ -1,4 +1,5 @@
 export interface ListaUsuariosI{
+  id:string;
   first_name: string;
   last_name: string;
   type_document: string;
@@ -8,6 +9,8 @@ export interface ListaUsuariosI{
   is_active: boolean;
   register_date: Date;
   address: string;
+  password: string;
+  user_image: string;
   role:number
 }
 

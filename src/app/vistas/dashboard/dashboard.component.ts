@@ -32,8 +32,9 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  editarUsuario(document: any) {
-    this.router.navigate(['edit', document]);
+  editarUsuario(id: any) {
+    console.log(id)
+    this.router.navigate(['edit', id]);
   }
 
   nuevoUsuario() {
