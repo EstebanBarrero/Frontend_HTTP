@@ -1,8 +1,25 @@
 <app-header></app-header>
 
-<div class="container">
-contenido magico
+    <div class="container">
+        <form [formGroup]="editarForm">
+          <div class="form-group row">
+            <div class="col">
+              <label for="exampleFormControllInput1">id</label>
+              <input type="text" class="form-control" placeholder="id del Usuario" formControlName = "id">
+            </div>
+            <div class="col">
+              <label for="exampleFormControllInput1">Nombre</label>
+              <input type="text" class="form-control" placeholder="Nombre del Usuario" formControlName = "first_name">
+            </div>
+            <div class="col">
+              <label for="exampleFormControllInput1">Apellido</label>
+              <input type="text" class="form-control" placeholder="Apellido del Usuario" formControlName = "last_name">
+            </div>
 
-</div>
+          </div>
+
+        </form>
+
+    </div>
 
 <app-footer></app-footer>
