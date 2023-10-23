@@ -13,5 +13,3 @@ export interface ListaUsuariosI{
   user_image: string;
   role:number
 }
-
-

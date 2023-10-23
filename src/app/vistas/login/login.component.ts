@@ -9,7 +9,6 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -41,7 +40,8 @@ export class LoginComponent implements OnInit{
     const document = form.usuario;
     const password = form.password;
     const data = { document, password };
-  
+    
+    //this.http.post('https://apilab3.azurewebsites.net', data)
     this.http.post('http://127.0.0.1:8000/login', data)
       .pipe(
         map((response: any) => {

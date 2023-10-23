@@ -5,6 +5,7 @@ import { LoginComponent} from './vistas/login/login.component';
 import { NuevoComponent} from './vistas/nuevo/nuevo.component';
 import { EditComponent} from './vistas/edit/edit.component';
 import { DashboardComponent} from './vistas/dashboard/dashboard.component';
+import { DashboardRolesComponent } from './vistas/dashboard-roles/dashboard-roles/dashboard-roles.component';
 
 
 const routes: Routes = [
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path:'edit/:id',
     component: EditComponent
+  },
+  {
+    path:'dashboard-roles',
+    component: DashboardRolesComponent
   }
 
 
@@ -37,4 +42,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [LoginComponent,DashboardComponent,NuevoComponent,EditComponent]
+export const routingComponents = [LoginComponent,DashboardRolesComponent,DashboardComponent,NuevoComponent,EditComponent]

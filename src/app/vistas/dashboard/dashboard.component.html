@@ -5,7 +5,7 @@
   <br />
   <div class="d-flex justify-content-between align-items-center mb-3">
     <!-- Botón -->
-    <button type="button" class="btn btn-primary" (click)="nuevoUsuario()">Listado Roles</button>
+    <button type="button" class="btn btn-primary" (click)="rolesDashboard()">Ver Listado Roles</button>
 
     <!-- Barra de búsqueda centrada -->
     <div class="d-flex align-items-center">
@@ -25,28 +25,29 @@
       </div>
     </div>
 
-    <!-- Paginación -->
     <nav aria-label="...">
+      <!--<label for="resultsPerPage">Resultados por página:</label>
+      <select id="resultsPerPage" [(ngModel)]="resultsPerPage" (change)="cambiarResultadosPorPagina()">
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
+      </select>-->
+
       <ul class="pagination">
-        <nav aria-label="...">
-          <ul class="pagination">
-            <li class="page-item disabled">
-              <span class="page-link">Previous</span>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="#" (click)="cambiarNumero(1)">1</a>
-            </li>
-            <li class="page-item active">
-              <span class="page-link" href="#" (click)="cambiarNumero(2)">2 <span class="sr-only"></span></span>
-            </li>
-            <li class="page-item"><a class="page-link" href="#" (click)="cambiarNumero(3)">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#">Next</a>
-            </li>
-          </ul>
-        </nav>
-      </ul>
+      <li class="page-item">
+        <a class="page-link" href="#" (click)="pageNumber > 1 ? cambiarNumero(pageNumber - 1, $event) : null"><</a>
+      </li>
+      <li class="page-item" [class.active]="pageNumber === 1">
+        <a class="page-link" href="#" (click)="cambiarNumero(1, $event)">{{ pageNumber }}</a>
+      </li>      
+      <!-- TODO: fix the limit:Otras páginas aquí -->
+      <li class="page-item">
+        <a class="page-link" href="#" (click)="cambiarNumero(pageNumber + 1, $event)">></a>
+      </li>
+    </ul>
     </nav>
+
   </div>
 
   <table class="table table-hover">
