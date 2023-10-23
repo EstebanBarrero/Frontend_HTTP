@@ -10,5 +10,3 @@ export interface ListaUsuariosI{
   address: string;
   role:number
 }
-
-

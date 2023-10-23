@@ -15,14 +15,30 @@ export class DashboardComponent implements OnInit {
   pageNumber: number = 1; // Valor inicial
   searchTerm: string = '';
   filteredUsers: ListaUsuariosI[] = [];
+  resultsPerPage: number = 10;
 
-  constructor(private api: ApiService, private router: Router) {}
 
-  cambiarNumero(numero: number) {
-    this.pageNumber = numero;
+  constructor(private api: ApiService, private router: Router) {
+    this.resultsPerPage = 10; 
   }
 
+  cambiarResultadosPorPagina() {
+    this.pageNumber = 1; // Reiniciar la página a 1 cuando cambies el número de resultados por página
+    this.cargarUsuarios();
+  }
+  
+  cambiarNumero(numero: number, event: Event) {
+    event.preventDefault();
+    this.pageNumber = numero;
+    this.cargarUsuarios();
+  }
+  
+
   ngOnInit() {
+    this.cargarUsuarios();
+  }
+
+  cargarUsuarios() {
     this.api.getAllUsers(this.pageNumber).subscribe((data) => {
       const values = Object.values(data);
       if (values.length >= 4) {
@@ -40,6 +56,7 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['nuevo']);
   }
 
+  //search function
   onSearch() {
     this.filteredUsers = this.users.filter((user) => {
       return (

@@ -11,6 +11,7 @@ import {Observable}  from 'rxjs'
 })
 export class ApiService {
   //Url en donde tengamos almacenado la api de pruebas
+  //url: string = "https://apilab3.azurewebsites.net"
   url: string = "http://127.0.0.1:8000/"
 
   constructor(private http:HttpClient) { }
