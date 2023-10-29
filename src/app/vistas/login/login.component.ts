@@ -40,9 +40,9 @@ export class LoginComponent implements OnInit{
     const document = form.usuario;
     const password = form.password;
     const data = { document, password };
-    
-    //this.http.post('https://apilab3.azurewebsites.net', data)
-    this.http.post('http://127.0.0.1:8000/login', data)
+
+    this.http.post('https://apilab3.azurewebsites.net/login', data)
+    //this.http.post('http://127.0.0.1:8000/login', data)
       .pipe(
         map((response: any) => {
           if (response.access_token) {
@@ -69,5 +69,5 @@ export class LoginComponent implements OnInit{
         }
       );
   }
-  
+
 }
