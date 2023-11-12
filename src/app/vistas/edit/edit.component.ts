@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { UsuarioI } from '../../models/usuario.interface';
 import { ApiService } from '../../services/api/api.service';
 import { FormGroup, FormControl } from '@angular/forms';
+import { ResponseI} from '../../models/response.interface';
+import { AlertsService} from '../../services/alerts/alerts.service';
 
 @Component({
   selector: 'app-edit',
@@ -11,7 +13,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class EditComponent implements OnInit {
 
-  constructor(private activerouter: ActivatedRoute, private router: Router, private api: ApiService) {}
+  constructor(private activerouter: ActivatedRoute, private router: Router, private api: ApiService, private alerts:AlertsService) {}
 
   editarForm = new FormGroup({
     id: new FormControl(''),
@@ -55,9 +57,16 @@ export class EditComponent implements OnInit {
   }
 
   postForm() {
-    this.api.putUser(this.editarForm.value as UsuarioI).subscribe((data: any) => {
+    this.api.putUser(this.editarForm.value as UsuarioI).subscribe((data: ResponseI) => {
+      if(data.status = "ok"){
+          this.alerts.showSuccess('Datos modificados', 'Update');
+          this.router.navigate(['dashboard']);
+      }else{
+        this.alerts.showError("No se a podido eliminar el Usuario",'Error');
+      }
       //console.log(data);
-      console.log(this.editarForm.value as UsuarioI);
+      //console.log(this.editarForm.value as UsuarioI);
+
     });
   }
 }
