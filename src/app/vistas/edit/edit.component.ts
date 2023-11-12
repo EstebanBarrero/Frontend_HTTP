@@ -10,7 +10,6 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./edit.component.scss']
 })
 export class EditComponent implements OnInit {
-  UserComplete!: UsuarioI;  // Declarar la variable
 
   constructor(private activerouter: ActivatedRoute, private router: Router, private api: ApiService) {}
 
@@ -32,7 +31,7 @@ export class EditComponent implements OnInit {
   ngOnInit(): void {
     let usuarioid = this.activerouter.snapshot.paramMap.get('id');
     let token = this.getToken();
-    this.api.getSigleUser(usuarioid).subscribe(data => {
+    this.api.getSigleUser(usuarioid).subscribe((data: { id: string; first_name: string; last_name: string; type_document: string; document: string; birthday: string; phone_number: string; is_active: string; register_date: string; address: string; user_image: string; role: string; }) => {
       const usuarioCompleto: UsuarioI = {
         id: data.id as string,
         first_name: data.first_name as string,
@@ -47,9 +46,7 @@ export class EditComponent implements OnInit {
         user_image: data.user_image as string,
         role: data.role as string
       };
-
       this.editarForm.setValue(usuarioCompleto);
-      this.UserComplete = this.editarForm.value as UsuarioI; // Castear a UsuarioI
     });
   }
 
@@ -58,10 +55,9 @@ export class EditComponent implements OnInit {
   }
 
   postForm() {
-    this.api.putUser(this.UserComplete).subscribe(data => {
-      console.log(data);
+    this.api.putUser(this.editarForm.value as UsuarioI).subscribe((data: any) => {
+      //console.log(data);
+      console.log(this.editarForm.value as UsuarioI);
     });
-
-    console.log(this.editarForm.value);
   }
 }

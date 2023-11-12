@@ -9,6 +9,8 @@ import { FooterComponent } from './plantillas/footer/footer.component';
 import {ReactiveFormsModule, FormsModule} from  '@angular/forms'
 import {HttpClientModule} from '@angular/common/http';
 import { DashboardRolesComponent } from './vistas/dashboard-roles/dashboard-roles/dashboard-roles.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { DashboardRolesComponent } from './vistas/dashboard-roles/dashboard-role
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [],
   bootstrap: [AppComponent]
