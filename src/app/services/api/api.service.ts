@@ -39,4 +39,11 @@ export class ApiService {
     return this.http.get<ListaRolesI[]>(direction);
   }
 
+  //Metodo para realizar el Put a la base de datos por medio de la URL
+  putUser(form:UsuarioI):Observable<ResponseI>{
+    let direction = this.url + "User"
+
+    return this.http.put<ResponseI>(direction,form);
+  }
+
 }
