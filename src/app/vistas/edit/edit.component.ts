@@ -52,12 +52,15 @@ export class EditComponent implements OnInit{
       role: data.role
     };
     this.editarForm.setValue(usuarioCompleto); // Asignar al formulario
-    console.log(this.editarForm.value)
   })
   }
 
   getToken(){
     return localStorage.getItem('token');
+  }
+
+  postForm(){
+    console.log(this.editarForm.value);
   }
 
 }
