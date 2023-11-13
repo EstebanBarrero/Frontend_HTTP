@@ -67,7 +67,7 @@ export class DashboardComponent implements OnInit {
 
   buscarUsuarios() {
     if (this.searchTerm) {
-      this.api.searchUser();
+      this.api.searchUsers();
       // Construye la URL de la solicitud
       const url = `http://127.0.0.1:8000/api/users/filter/?text_to_search=${this.searchTerm}`;
 
