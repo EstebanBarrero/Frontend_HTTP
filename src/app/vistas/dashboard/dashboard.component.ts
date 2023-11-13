@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api/api.service';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+
 
 import { ListaUsuariosI } from '../../models/listaUsuarios.interface';
 
@@ -18,7 +20,7 @@ export class DashboardComponent implements OnInit {
   resultsPerPage: number = 10;
   pageTitle: string = 'CONTROL PANEL USERS';
 
-  constructor(private api: ApiService, private router: Router) {
+  constructor(private http: HttpClient,private api: ApiService, private router: Router) {
     this.resultsPerPage = 10; 
   }
 
@@ -62,13 +64,29 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['nuevo']);
   }
 
-  //search function
-  onSearch() {
-    this.filteredUsers = this.users.filter((user) => {
-      return (
-        user.first_name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-        user.last_name.toLowerCase().includes(this.searchTerm.toLowerCase())
+
+  buscarUsuarios() {
+    if (this.searchTerm) {
+      // Construye la URL de la solicitud
+      const url = `http://127.0.0.1:8000/api/users/filter/?text_to_search=${this.searchTerm}`;
+  
+      // Realiza la petición GET
+      this.http.get(url).subscribe(
+        (response: any) => {
+          if (response.users && Array.isArray(response.users)) {
+            // Si existe la propiedad 'users' y es un array, asigna a filteredUsers
+            this.filteredUsers = response.users as ListaUsuariosI[];
+          } else {
+            // Si no se cumple la estructura esperada, muestra un mensaje de advertencia o maneja según tus necesidades
+            console.warn('La estructura de la respuesta no es la esperada:', response);
+          }
+        },
+        (error) => {
+          console.error('Error al realizar la búsqueda:', error);
+          // Maneja el error según tus necesidades
+        }
       );
-    });
+    }
   }
+  
 }

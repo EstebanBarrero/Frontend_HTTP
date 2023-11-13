@@ -17,12 +17,16 @@
           aria-label="Search"
           aria-describedby="search-addon"
           [(ngModel)]="searchTerm"
-          (input)="onSearch()"
         />
         <span class="input-group-text border-0" id="search-addon">
           <i class="fas fa-search"></i>
         </span>
       </div>
+
+      <!-- Botón de búsqueda  agregar  -->
+      <button type="button" class="btn btn-outline-secondary" (click)="buscarUsuarios()">
+        <i class="fas fa-search"></i> Buscar
+      </button>
     </div>
 
     <nav aria-label="...">
