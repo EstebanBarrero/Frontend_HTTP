@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
   pageTitle: string = 'CONTROL PANEL USERS';
 
   constructor(private http: HttpClient,private api: ApiService, private router: Router) {
-    this.resultsPerPage = 10; 
+    this.resultsPerPage = 10;
   }
 
   cambiarResultadosPorPagina() {
@@ -33,20 +33,20 @@ export class DashboardComponent implements OnInit {
   rolesDashboard() {
     this.router.navigate(['dashboard-roles']);
   }
-  
+
   cambiarNumero(numero: number, event: Event) {
     event.preventDefault();
     this.pageNumber = numero;
     this.cargarUsuarios();
   }
-  
+
 
   ngOnInit() {
     this.cargarUsuarios();
   }
 
   cargarUsuarios() {
-    this.api.getAllUsers(this.pageNumber).subscribe((data) => {
+    this.api.getAllUsers(this.pageNumber).subscribe((data: ArrayLike<unknown> | { [s: string]: unknown; }) => {
       const values = Object.values(data);
       if (values.length >= 4) {
         this.users = values[3] as any;
@@ -67,18 +67,21 @@ export class DashboardComponent implements OnInit {
 
   buscarUsuarios() {
     if (this.searchTerm) {
+      this.api.searchUser();
       // Construye la URL de la solicitud
       const url = `http://127.0.0.1:8000/api/users/filter/?text_to_search=${this.searchTerm}`;
-  
+
       // Realiza la petición GET
       this.http.get(url).subscribe(
         (response: any) => {
           if (response.users && Array.isArray(response.users)) {
             // Si existe la propiedad 'users' y es un array, asigna a filteredUsers
             this.filteredUsers = response.users as ListaUsuariosI[];
+            console.log(response.users as ListaUsuariosI[]);
           } else {
             // Si no se cumple la estructura esperada, muestra un mensaje de advertencia o maneja según tus necesidades
             console.warn('La estructura de la respuesta no es la esperada:', response);
+
           }
         },
         (error) => {
@@ -88,5 +91,5 @@ export class DashboardComponent implements OnInit {
       );
     }
   }
-  
+
 }

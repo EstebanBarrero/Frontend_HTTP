@@ -20,7 +20,7 @@ export class DashboardRolesComponent implements OnInit{
 
 
   constructor(private api: ApiService, private router: Router) {
-    this.resultsPerPage = 10; 
+    this.resultsPerPage = 10;
   }
 
   cambiarResultadosPorPagina() {
@@ -32,20 +32,20 @@ export class DashboardRolesComponent implements OnInit{
   usersDashboard() {
     this.router.navigate(['dashboard']);
   }
-  
+
   cambiarNumero(numero: number, event: Event) {
     event.preventDefault();
     this.pageNumber = numero;
     this.cargarRoles();
   }
-  
+
 
   ngOnInit() {
     this.cargarRoles();
   }
 
   cargarRoles() {
-    this.api.getAllRoles(this.pageNumber).subscribe((data) => {
+    this.api.getAllRoles(this.pageNumber).subscribe((data: ArrayLike<unknown> | { [s: string]: unknown; }) => {
       const values = Object.values(data);
       if (values.length >= 4) {
         this.roles = values[3] as any;

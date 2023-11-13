@@ -45,4 +45,10 @@ export class ApiService {
     return this.http.put<ResponseI>(direction,form);
   }
 
+  searchUser(): Observable<ListaUsuariosI[]>{
+    let direction = this.url + `api/users/filter/?text_to_search=${this.searchUser}`;
+    //console.log(direction);
+    return this.http.get <ListaUsuariosI[]>(direction);
+  }
+
 }
