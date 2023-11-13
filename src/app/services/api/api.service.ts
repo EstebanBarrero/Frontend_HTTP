@@ -15,6 +15,7 @@ export class ApiService {
   //Url en donde tengamos almacenado la api de pruebas
   //url: string = "https://apilab3.azurewebsites.net/"
   url: string = "http://127.0.0.1:8000/"
+  searchTerm: string = '';
 
   constructor(private http:HttpClient) { }
 
@@ -45,10 +46,17 @@ export class ApiService {
     return this.http.put<ResponseI>(direction,form);
   }
 
-  searchUsers(): Observable<ListaUsuariosI[]>{
-    let direction = this.url + `api/users/filter/?text_to_search=${this.searchUsers}`;
-    //console.log(direction);
-    return this.http.get <ListaUsuariosI[]>(direction);
+  setSearchTerm(term: string): void {
+    this.searchTerm = term;
+  }
+
+  buildSearchUrl(): string {
+    return `${this.url}api/users/filter/?text_to_search=${this.searchTerm}`;
+  }
+
+  searchUsers(): Observable<ListaUsuariosI[]> {
+    let direction = this.buildSearchUrl();
+    return this.http.get<ListaUsuariosI[]>(direction);
   }
 
 }

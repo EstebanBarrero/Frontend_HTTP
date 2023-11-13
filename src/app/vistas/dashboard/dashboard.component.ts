@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api/api.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { AlertsService} from '../../services/alerts/alerts.service';
 
 
 import { ListaUsuariosI } from '../../models/listaUsuarios.interface';
@@ -20,8 +21,9 @@ export class DashboardComponent implements OnInit {
   resultsPerPage: number = 10;
   pageTitle: string = 'CONTROL PANEL USERS';
 
-  constructor(private http: HttpClient,private api: ApiService, private router: Router) {
+  constructor(private http: HttpClient,private api: ApiService, private router: Router, private alerts:AlertsService) {
     this.resultsPerPage = 10;
+    
   }
 
   cambiarResultadosPorPagina() {
@@ -67,26 +69,19 @@ export class DashboardComponent implements OnInit {
 
   buscarUsuarios() {
     if (this.searchTerm) {
-      this.api.searchUsers();
-      // Construye la URL de la solicitud
-      const url = `http://127.0.0.1:8000/api/users/filter/?text_to_search=${this.searchTerm}`;
-
-      // Realiza la petición GET
-      this.http.get(url).subscribe(
+      this.api.setSearchTerm(this.searchTerm); // Establece el término de búsqueda en el servicio
+      this.api.searchUsers().subscribe(
         (response: any) => {
           if (response.users && Array.isArray(response.users)) {
-            // Si existe la propiedad 'users' y es un array, asigna a filteredUsers
             this.filteredUsers = response.users as ListaUsuariosI[];
             console.log(response.users as ListaUsuariosI[]);
+            this.alerts.showSuccess('Búsqueda realizada correctamente', 'Éxito');
           } else {
-            // Si no se cumple la estructura esperada, muestra un mensaje de advertencia o maneja según tus necesidades
-            console.warn('La estructura de la respuesta no es la esperada:', response);
-
+            this.alerts.showError('Error al realizar la búsqueda', 'Warning');
           }
         },
         (error) => {
-          console.error('Error al realizar la búsqueda:', error);
-          // Maneja el error según tus necesidades
+          this.alerts.showError('Error al realizar la búsqueda', 'Error');
         }
       );
     }
