@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/99d691e8-674b-4715-ba9b-8efbcc554db4/resourceGroups/ResourceGroupLab3/providers/Microsoft.Web/sites/ASAngular",
+    "appService.deploySubpath": "dist\\frontend"
+}
