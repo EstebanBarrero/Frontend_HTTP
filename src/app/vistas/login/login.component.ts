@@ -1,38 +1,48 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ApiService } from '../../services/api/api.service';
-import { HttpClient } from '@angular/common/http';
+import { LoginI } from '../../models/login.interface';
 import { Router } from '@angular/router';
+import { ResponseI } from '../../models/response.interface';
+
+import { HttpClient } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit{
+
   loginForm = new FormGroup({
-    usuario: new FormControl('', Validators.required),
+    usuario: new FormControl('',Validators.required),
     password: new FormControl('', Validators.required)
   })
+
   constructor(private api: ApiService, private router: Router, private http: HttpClient) { }
-  errorStatus: boolean = false;
-  errorMsj: any = "";
+
+  errorStatus:boolean = false;
+  errorMsj:any = "";
+
   ngOnInit(): void {
     this.checkLocalStorage();
   }
-  checkLocalStorage() {
-    if (localStorage.getItem('token')) {
+
+  checkLocalStorage(){
+    if(localStorage.getItem('token')){
       this.router.navigate(['dashboard']);
     }
   }
+
   onLogin(form: any) {
     const document = form.usuario;
     const password = form.password;
     const data = { document, password };
-    // Utiliza la URL directamente desde el servicio ApiService
-    const loginUrl = this.api.getBaseUrl() + "login";
-    this.http.post(loginUrl, data)
+
+    this.http.post('https://asbackpython2.azurewebsites.net/login', data)
+    //this.http.post('http://127.0.0.1:8000/login', data)
       .pipe(
         map((response: any) => {
           if (response.access_token) {
@@ -52,11 +62,12 @@ export class LoginComponent implements OnInit {
         })
       )
       .subscribe(
-        () => { },
+        () => {},
         (error: any) => {
           this.errorStatus = true;
           this.errorMsj = error.message;
         }
       );
   }
+
 }
