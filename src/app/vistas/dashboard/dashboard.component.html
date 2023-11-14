@@ -30,20 +30,20 @@
     </div>
 
     <nav aria-label="...">
-
       <ul class="pagination">
-      <li class="page-item">
-        <a class="page-link" href="#" (click)="pageNumber > 1 ? cambiarNumero(pageNumber - 1, $event) : null"><</a>
-      </li>
-      <li class="page-item" [class.active]="pageNumber === 1">
-        <a class="page-link" href="#" (click)="cambiarNumero(1, $event)">{{ pageNumber }}</a>
-      </li>      
-      <!-- TODO: fix the limit:Otras páginas aquí -->
-      <li class="page-item">
-        <a class="page-link" href="#" (click)="cambiarNumero(pageNumber + 1, $event)">></a>
-      </li>
+        <li class="page-item" [class.disabled]="!hasPreviousPage()">
+          <a class="page-link" href="#" (click)="hasPreviousPage() ? cambiarNumero(pageNumber - 1, $event) : null"><</a>
+        </li>
+        <li class="page-item" [class.active]="pageNumber === 1">
+          <a class="page-link" href="#" (click)="cambiarNumero(1, $event)">{{ pageNumber }}</a>
+        </li>
+        <!-- TODO: fix the limit: Otras páginas aquí -->
+        <li class="page-item" [class.disabled]="!hasNextPage()">
+          <a class="page-link" href="#" (click)="hasNextPage() ? cambiarNumero(pageNumber + 1, $event) : null">></a>
+        </li>
       </ul>
     </nav>
+    
 
   </div>
 

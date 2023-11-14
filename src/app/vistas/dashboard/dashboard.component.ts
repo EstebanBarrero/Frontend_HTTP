@@ -77,4 +77,13 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  hasPreviousPage(): boolean {
+    return this.pageNumber > 1;
+  }
+  
+  hasNextPage(): boolean {
+    // Assuming 'this.users' is the array of users
+    return this.users && this.users.length > 0 && this.users.length === 50;
+  }
+
 }
