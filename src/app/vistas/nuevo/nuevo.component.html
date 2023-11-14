@@ -1,1 +1,22 @@
+<app-header></app-header>
+<div class="container">
+    <h3>ROL USUARIO</h3>
+    <button type="button" class="btn btn-primary" (click)="exit()">Volver</button>
 
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">NOMBRE</th>
+                <th scope="col">CANTIDAD USUARIO</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let rol of roles">
+                <th scope="row">{{ rol.rol_name }}</th>
+                <td>{{ rol.rol_count}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+<app-footer></app-footer>

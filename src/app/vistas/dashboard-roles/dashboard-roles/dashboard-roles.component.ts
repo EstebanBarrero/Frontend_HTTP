@@ -33,6 +33,11 @@ export class DashboardRolesComponent implements OnInit{
     this.router.navigate(['dashboard']);
   }
 
+  //cambiar a dashboard de roles
+  usersRoles() {
+    this.router.navigate(['nuevo']);
+  }
+
   cambiarNumero(numero: number, event: Event) {
     event.preventDefault();
     this.pageNumber = numero;

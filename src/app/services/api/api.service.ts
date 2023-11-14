@@ -59,4 +59,9 @@ export class ApiService {
     return this.http.get<ListaUsuariosI[]>(direction);
   }
 
+  userRoles(): Observable<any> {
+    let direction = this.url + "api/roles_user_count/";
+    return this.http.get<any>(direction);
+  }
+
 }
