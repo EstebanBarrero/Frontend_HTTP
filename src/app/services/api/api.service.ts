@@ -15,7 +15,6 @@ export class ApiService {
   //Url en donde tengamos almacenado la api de pruebas
   //url: string = "https://apilab3.azurewebsites.net/"
   url: string = "https://asbackpython2.azurewebsites.net/"
-  searchTerm: string = '';
 
   constructor(private http:HttpClient) { }
 
@@ -24,10 +23,10 @@ export class ApiService {
     return this.http.post<ResponseI>(direction,form);
   }
 
-  getAllUsers(page:number): Observable<ListaUsuariosI[]>{
-    let direction = this.url + "api/users/?page=" + page
-    return this.http.get <ListaUsuariosI[]>(direction);
-  }
+  //getAllUsers(page:number): Observable<ListaUsuariosI[]>{
+   // let direction = this.url + "api/users/?page=" + page
+   // return this.http.get <ListaUsuariosI[]>(direction);
+  //}
 
   getSigleUser(id : any): Observable<UsuarioI>{
     let direction = this.url + "api/users/" + id + "/"
@@ -46,17 +45,10 @@ export class ApiService {
     return this.http.put<ResponseI>(direction,form);
   }
 
-  setSearchTerm(term: string): void {
-    this.searchTerm = term;
-  }
-
-  buildSearchUrl(): string {
-    return `${this.url}api/users/filter/?text_to_search=${this.searchTerm}`;
-  }
-
-  searchUsers(): Observable<ListaUsuariosI[]> {
-    let direction = this.buildSearchUrl();
-    return this.http.get<ListaUsuariosI[]>(direction);
+  getAllUsers(searchTerm: string, page:number): Observable<ListaUsuariosI[]> {
+      let direction = this.url + "api/search-users/?page=" + page + "&search=" + searchTerm;
+      console.log(direction);
+      return this.http.get<ListaUsuariosI[]>(direction);
   }
 
   userRoles(): Observable<any> {

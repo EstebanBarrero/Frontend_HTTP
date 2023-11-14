@@ -28,7 +28,7 @@ export class DashboardComponent implements OnInit {
 
   cambiarResultadosPorPagina() {
     this.pageNumber = 1; // Reiniciar la página a 1 cuando cambies el número de resultados por página
-    this.cargarUsuarios();
+    this.cargarUsuariosBusqueda();
   }
 
   //cambiar a dashboard de roles
@@ -39,14 +39,15 @@ export class DashboardComponent implements OnInit {
   cambiarNumero(numero: number, event: Event) {
     event.preventDefault();
     this.pageNumber = numero;
-    this.cargarUsuarios();
+    this.cargarUsuariosBusqueda();
   }
 
 
   ngOnInit() {
-    this.cargarUsuarios();
+    this.cargarUsuariosBusqueda();
   }
 
+  /*
   cargarUsuarios() {
     this.api.getAllUsers(this.pageNumber).subscribe((data: ArrayLike<unknown> | { [s: string]: unknown; }) => {
       const values = Object.values(data);
@@ -55,7 +56,7 @@ export class DashboardComponent implements OnInit {
         this.filteredUsers = this.users; // Inicialmente, muestra todos los usuarios
       }
     });
-  }
+  }*/
 
   editarUsuario(id: any) {
     console.log(id)
@@ -66,25 +67,14 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['nuevo']);
   }
 
-
-  buscarUsuarios() {
-    if (this.searchTerm) {
-      this.api.setSearchTerm(this.searchTerm); // Establece el término de búsqueda en el servicio
-      this.api.searchUsers().subscribe(
-        (response: any) => {
-          if (response.users && Array.isArray(response.users)) {
-            this.filteredUsers = response.users as ListaUsuariosI[];
-            console.log(response.users as ListaUsuariosI[]);
-            this.alerts.showSuccess('Búsqueda realizada correctamente', 'Éxito');
-          } else {
-            this.alerts.showError('Error al realizar la búsqueda', 'Warning');
-          }
-        },
-        (error) => {
-          this.alerts.showError('Error al realizar la búsqueda', 'Error');
-        }
-      );
-    }
+  cargarUsuariosBusqueda() {
+    this.api.getAllUsers(this.searchTerm, this.pageNumber).subscribe((data: ArrayLike<unknown> | { [s: string]: unknown; }) => {
+      const values = Object.values(data);
+      if (values.length >= 4) {
+        this.users = values[3] as any;
+        this.filteredUsers = this.users; // Inicialmente, muestra todos los usuarios
+      }
+    });
   }
 
 }

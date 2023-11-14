@@ -24,19 +24,12 @@
       </div>
 
       <!-- Botón de búsqueda  agregar  -->
-      <button type="button" class="btn btn-outline-secondary" (click)="buscarUsuarios()">
+      <button type="button" class="btn btn-outline-secondary" (click)="cargarUsuariosBusqueda()">
         <i class="fas fa-search"></i> Buscar
       </button>
     </div>
 
     <nav aria-label="...">
-      <!--<label for="resultsPerPage">Resultados por página:</label>
-      <select id="resultsPerPage" [(ngModel)]="resultsPerPage" (change)="cambiarResultadosPorPagina()">
-        <option value="10">10</option>
-        <option value="20">20</option>
-        <option value="50">50</option>
-        <option value="100">100</option>
-      </select>-->
 
       <ul class="pagination">
       <li class="page-item">
@@ -49,7 +42,7 @@
       <li class="page-item">
         <a class="page-link" href="#" (click)="cambiarNumero(pageNumber + 1, $event)">></a>
       </li>
-    </ul>
+      </ul>
     </nav>
 
   </div>
