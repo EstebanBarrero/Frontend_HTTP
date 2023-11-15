@@ -15,7 +15,7 @@ export class ApiService {
   //Url en donde tengamos almacenado la api de pruebas
   //url: string = "https://apilab3.azurewebsites.net/"
   url: string = "https://asbackpython3.azurewebsites.net/"
-  urlusers: string = "https://apimproject.azure-api.net/"
+  urlusers: string = "https://apimproject.azure-api.net/users/"
   urlroles: string = "https://apimproject.azure-api.net/api/"
   urlUserRoles: string = "https://apimproject.azure-api.net/ur/"
 
